@@ -69,12 +69,18 @@ The bot will scan every 5 minutes, log paper bets to `paper_trading_ledger.csv`,
 
 ## Strategy Configuration
 
-Edit the constants at the top of `ghost_bot_BTTS_v2.py`:
+The bot loads its strategy parameters from a `strategy_config.json` file that is **gitignored** to keep your edge private. To set up your own strategy:
 
-- **`ALLOWED_LEAGUES`** - Betfair competition IDs to monitor (use `list_competitions.py` to find IDs)
-- **`EXCLUDED_TEAMS`** - Teams to skip based on backtesting (use `team_sniper.py` to verify names)
-- **`MIN_ODDS` / `MAX_ODDS`** - Back price range (default: 1.81 - 2.60)
-- **`PAPER_STAKE`** - Simulated bet amount per selection
+1. Copy the example config:
+   ```bash
+   cp strategy_config.example.json strategy_config.json
+   ```
+
+2. Edit `strategy_config.json` with your own values:
+   - **`allowed_leagues`** - Betfair competition IDs to monitor (use `list_competitions.py` to find IDs)
+   - **`excluded_teams`** - Teams to skip based on backtesting (use `team_sniper.py` to verify names)
+   - **`min_odds` / `max_odds`** - Back price range for your strategy
+   - **`paper_stake`** - Simulated bet amount per selection
 
 ## Data Files
 

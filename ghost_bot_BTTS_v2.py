@@ -2,6 +2,7 @@ import betfairlightweight
 from betfairlightweight.filters import market_filter, price_projection
 import pandas as pd
 import os
+import json
 import time
 from datetime import datetime, timezone
 from dotenv import load_dotenv
@@ -22,40 +23,18 @@ MY_CERTS = (
 )
 
 # ==========================================
-# 2. STRATEGY CONFIGURATION 
+# 2. STRATEGY CONFIGURATION (loaded from strategy_config.json)
 # ==========================================
-PAPER_STAKE = 10.00  # The flat amount you want to "paper bet"
-MIN_ODDS = 1.81
-MAX_ODDS = 2.60
+# See strategy_config.example.json for the expected format.
+# Your real strategy_config.json is gitignored to keep your edge private.
+with open(os.path.join(_script_dir, "strategy_config.json")) as f:
+    _config = json.load(f)
 
-# CRITERIA 1: Allowed Leagues
-ALLOWED_LEAGUES = [
-    '13',       # Brasilian Serie A
-    '55',       # French Ligue 1
-    '951',      # Portuguese Segunda Liga
-    '81',       # Italian Serie A
-    '12199689', # Italian Serie B
-    '194215',   # Turkish Super Lig
-    '12204313', # Spanish Segunda Division
-    '843454',   # Uruguayan Primera Division
-    '879931'    # Chinese Super League
-    #'10932509', # Korean K League 1 - this is not available in the API
-]
-
-# CRITERIA 2: Excluded Teams
-EXCLUDED_TEAMS = [
-    'Burgos', 'Cittadella', 'Sport Recife', 'Malaga', 'Cruzeiro MG', 'Basaksehir',
-    'Incheon', 'Wanderers (Uru)', 'Varzim', 'Elche', 'Fortaleza EC', 'Reggina',
-    'Fluminense', 'Valladolid', 'Empoli', 'Frosinone', 'Penarol', 'Besiktas',
-    'Cerro Largo', 'Espanyol', 'Mallorca', 'Gwangju', 'Perugia', 'Reggiana',
-    'Girona', 'Inter', 'Fiorentina', 'Lecce', 'Cuiaba', 'Granada', 'Tenerife',
-    'Alcorcon', 'Spezia', 'Cerrito', 'UD Logrones', 'Pescara', 'Pordenone',
-    'Hatayspor', 'Galatasaray', 'Santa Clara', 'Juventus', 'Mafra', 'Rennes',
-    'Malatyaspor', 'Arouca', 'Clermont', 'Casa Pia', 'Leganes', 'Os Belenenses',
-    'Fatih Karagumruk', 'Penafiel', 'Ajaccio', 'Qingdao Jonoon', 'Centro Atletico Fenix',
-    'Carrarese', 'Guangzhou City', 'Seongnam', 'Nice', 'CD Castellon', 'Andorra',
-    'Andorra CF', 'Man City'
-]
+PAPER_STAKE     = _config["paper_stake"]
+MIN_ODDS        = _config["min_odds"]
+MAX_ODDS        = _config["max_odds"]
+ALLOWED_LEAGUES = _config["allowed_leagues"]
+EXCLUDED_TEAMS  = _config["excluded_teams"]
 EXCLUDED_TEAMS_SET = set(EXCLUDED_TEAMS)
 
 # ==========================================

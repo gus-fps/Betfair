@@ -3,6 +3,9 @@ Betfair.env
 .env
 *.env
 
+# ===== STRATEGY CONFIG (private edge) =====
+strategy_config.json
+
 # ===== CERTIFICATES =====
 certs/
 *.pem

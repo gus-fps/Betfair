@@ -1,6 +1,7 @@
 import betfairlightweight
 from betfairlightweight.filters import market_filter, price_projection
 import os
+import json
 from dotenv import load_dotenv
 
 # ==========================================
@@ -19,96 +20,17 @@ MY_CERTS = (
 )
 
 # ==========================================
-# 2. STRATEGY CONFIGURATION (Your Backtest Edge)
+# 2. STRATEGY CONFIGURATION (loaded from strategy_config.json)
 # ==========================================
-# CRITERIA 1: Allowed Leagues
-# Paste the exact Competition IDs you found in your CSV. 
-# (Note: These must be strings inside quotes, e.g., '10932509')
-ALLOWED_LEAGUES = [
-    '13',       # Brasilian Serie A
-    '55',       # French Ligue 1
-    '951',      # Portuguese Segunda Liga
-    '81',       # Italian Serie A
-    '12199689', # Italian Serie B
-    '194215',   # Turkish Super Lig
-    '12204313', # Spanish Segunda Division
-    '843454',   # Uruguayan Primera Division
-    '879931'    # Chinese Super League
-   #'10932509', # Korean K League 1 - this is not available in the API
-]
+# See strategy_config.example.json for the expected format.
+# Your real strategy_config.json is gitignored to keep your edge private.
+with open(os.path.join(_script_dir, "strategy_config.json")) as f:
+    _config = json.load(f)
 
-# CRITERIA 2: Excluded Teams
-# The exact spelling from Betfair (case-sensitive). 
-# We include the ones you mentioned earlier as examples!
-EXCLUDED_TEAMS = [
-    'Burgos', 
-    'Cittadella',
-    'Sport Recife', 
-    'Malaga',
-    'Cruzeiro MG',
-    'Basaksehir',
-    'Incheon',
-    'Wanderers (Uru)',
-    'Varzim',
-    'Elche',
-    'Fortaleza EC',
-    'Reggina',
-    'Fluminense',
-    'Valladolid',
-    'Empoli',
-    'Frosinone',
-    'Penarol',
-    'Besiktas',
-    'Cerro Largo',
-    'Espanyol',
-    'Mallorca',
-    'Gwangju',
-    'Perugia',
-    'Reggiana',
-    'Girona',
-    'Inter',
-    'Fiorentina',
-    'Lecce',
-    'Cuiaba',
-    'Granada',
-    'Tenerife',
-    'Alcorcon',
-    'Spezia',
-    'Cerrito',
-    'UD Logrones',
-    'Pescara',
-    'Pordenone',
-    'Hatayspor',
-    'Galatasaray',
-    'Santa Clara',
-    'Juventus',
-    'Mafra',
-    'Rennes',
-    'Malatyaspor',
-    'Arouca',
-    'Clermont',
-    'Casa Pia',
-    'Leganes',
-    'Os Belenenses',
-    'Fatih Karagumruk',
-    'Penafiel',
-    'Ajaccio',
-    'Qingdao Jonoon',
-    'Centro Atletico Fenix',
-    'Carrarese',
-    'Guangzhou City',
-    'Seongnam',
-    'Nice',
-    'CD Castellon',
-    'Andorra',
-    'Andorra CF', # Added a variation just to be safe
-    'Man City'
-    # Add the rest of your Excel list here...
-]
-
-# CRITERIA 3: The Odds Range
-MIN_ODDS = 1.81
-MAX_ODDS = 2.60
+ALLOWED_LEAGUES = _config["allowed_leagues"]
+EXCLUDED_TEAMS  = _config["excluded_teams"]
+MIN_ODDS        = _config["min_odds"]
+MAX_ODDS        = _config["max_odds"]
 
 
 # ==========================================

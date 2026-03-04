@@ -1,0 +1,13 @@
+{
+    "paper_stake": 10.00,
+    "min_odds": 1.50,
+    "max_odds": 3.00,
+    "allowed_leagues": [
+        "13",
+        "81"
+    ],
+    "excluded_teams": [
+        "Example Team A",
+        "Example Team B"
+    ]
+}
