@@ -1,0 +1,26 @@
+# ===== CREDENTIALS & SECRETS =====
+Betfair.env
+.env
+*.env
+
+# ===== CERTIFICATES =====
+certs/
+*.pem
+*.key
+*.crt
+
+# ===== SENSITIVE IMAGES =====
+bf_keys.png
+
+# ===== PYTHON =====
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# ===== EXCEL TEMP FILES =====
+~$*
+
+# ===== OS FILES =====
+.DS_Store
+Thumbs.db
