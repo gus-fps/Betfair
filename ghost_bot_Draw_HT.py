@@ -33,14 +33,14 @@ with open(os.path.join(_script_dir, "strategy_config.json")) as f:
 PAPER_STAKE     = _config["paper_stake"]
 MIN_ODDS        = _config["min_odds"]
 MAX_ODDS        = _config["max_odds"]
-ALLOWED_LEAGUES = _config["allowed_leagues"]
+ALLOWED_LEAGUES = _config["draw_ht_allowed_leagues"]
 EXCLUDED_TEAMS  = _config["excluded_teams"]
 EXCLUDED_TEAMS_SET = set(EXCLUDED_TEAMS)
 
 # ==========================================
 # 3. LEDGER INITIALIZATION
 # ==========================================
-CSV_FILE = os.path.join(_script_dir, "paper_trading_ledger.csv")
+CSV_FILE = os.path.join(_script_dir, "paper_trading_ledger_draw_ht.csv")
 
 # If the ledger doesn't exist, create it with our new advanced columns
 if not os.path.exists(CSV_FILE):
@@ -118,7 +118,7 @@ while True:
     strategy_filter = market_filter(
         event_type_ids=['1'],
         competition_ids=ALLOWED_LEAGUES,
-        market_type_codes=['BOTH_TEAMS_TO_SCORE']
+        market_type_codes=['HALF_TIME']
     )
 
     catalogue = trading.betting.list_market_catalogue(
@@ -154,7 +154,7 @@ while True:
             
             for runner in market_book.runners:
                 runner_name = next((r.runner_name for r in market.runners if r.selection_id == runner.selection_id), "Unknown")
-                if runner_name != "Yes":
+                if runner_name == "The Draw":
                     continue
 
                 if runner.ex.available_to_back:
