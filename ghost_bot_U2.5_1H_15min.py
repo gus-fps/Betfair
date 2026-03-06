@@ -47,7 +47,7 @@ CSV_FILE = os.path.join(_script_dir, "paper_trading_ledger_u25_1h.csv")
 if not os.path.exists(CSV_FILE):
     df_initial = pd.DataFrame(columns=[
         "Timestamp", "Market_ID", "Selection_ID", "League", "Match",
-        "Selection", "Stake", "Matched_Odds", "Kickoff", "Result", "Profit"
+        "Selection", "Stake", "Matched_Odds", "Kickoff", "Kickoff_Odds", "Result", "Profit", "Running_Total"
     ])
     df_initial.to_csv(CSV_FILE, index=False)
 
@@ -58,6 +58,12 @@ except Exception as e:
     print(f"Login failed: {e}")
     raise SystemExit(1)
 print("✅ Logged in successfully. Firing up the strategy engine...\n")
+
+def update_running_total(df):
+    settled_profits = df['Profit'].where(df['Result'] != 'PENDING', 0)
+    running = settled_profits.cumsum().round(2)
+    df['Running_Total'] = running.where(df['Result'] != 'PENDING')
+    return df
 
 # ==========================================
 # 4. THE CONTINUOUS EXECUTION ENGINE
@@ -73,6 +79,12 @@ while True:
         print("⚠️ ERROR: Please close the CSV file in Excel so the bot can read/write to it!")
         time.sleep(10)
         continue
+
+    # Ensure new columns exist for CSVs created before this update
+    if 'Kickoff_Odds' not in df_ledger.columns:
+        df_ledger['Kickoff_Odds'] = None
+    if 'Running_Total' not in df_ledger.columns:
+        df_ledger['Running_Total'] = None
 
     # ---------------------------------------------------------
     # ROUTINE A: HEDGE PENDING BETS
@@ -113,34 +125,46 @@ while True:
                             df_ledger.at[index, 'Profit'] = -stake
                             print(f"📉 SETTLED LOSS (unhedged): {row['Match']} (-£{stake})")
 
-            elif market_book.inplay and minutes_elapsed >= 15:
-                # Time to hedge — find the current lay price for our selection
-                for runner in market_book.runners:
-                    if runner.selection_id == selection_id:
-                        if runner.ex.available_to_lay:
-                            lay_odds = runner.ex.available_to_lay[0].price
-                        elif runner.last_price_traded:
-                            # No lay offers in the queue, use last traded as estimate
-                            lay_odds = runner.last_price_traded
-                        else:
-                            # Can't hedge this cycle, will retry in 5 min
-                            print(f"⚠️ No lay price available for {row['Match']}, will retry...")
-                            break
+            else:
+                # Capture kickoff odds on the first cycle we see the market go in-play
+                if market_book.inplay and pd.isna(df_ledger.at[index, 'Kickoff_Odds']):
+                    for runner in market_book.runners:
+                        if runner.selection_id == selection_id:
+                            try:
+                                if runner.ex.available_to_back:
+                                    df_ledger.at[index, 'Kickoff_Odds'] = runner.ex.available_to_back[0].price
+                            except Exception:
+                                pass
 
-                        # Hedge formula: lock equal profit on both outcomes
-                        hedge_stake = round(stake * back_odds / lay_odds, 2)
-                        locked_profit = round(stake * (back_odds - lay_odds) / lay_odds, 2)
+                if market_book.inplay and minutes_elapsed >= 15:
+                    # Time to hedge — find the current lay price for our selection
+                    for runner in market_book.runners:
+                        if runner.selection_id == selection_id:
+                            if runner.ex.available_to_lay:
+                                lay_odds = runner.ex.available_to_lay[0].price
+                            elif runner.last_price_traded:
+                                # No lay offers in the queue, use last traded as estimate
+                                lay_odds = runner.last_price_traded
+                            else:
+                                # Can't hedge this cycle, will retry in 5 min
+                                print(f"⚠️ No lay price available for {row['Match']}, will retry...")
+                                break
 
-                        df_ledger.at[index, 'Result'] = 'HEDGED'
-                        df_ledger.at[index, 'Profit'] = locked_profit
+                            # Hedge formula: lock equal profit on both outcomes
+                            hedge_stake = round(stake * back_odds / lay_odds, 2)
+                            locked_profit = round(stake * (back_odds - lay_odds) / lay_odds, 2)
 
-                        direction = "+" if locked_profit >= 0 else ""
-                        print(f"🔒 HEDGED: {row['Match']} | Backed @ {back_odds} → Lay @ {lay_odds} | Hedge Stake: £{hedge_stake} | Locked P&L: {direction}£{locked_profit}")
+                            df_ledger.at[index, 'Result'] = 'HEDGED'
+                            df_ledger.at[index, 'Profit'] = locked_profit
+
+                            direction = "+" if locked_profit >= 0 else ""
+                            print(f"🔒 HEDGED: {row['Match']} | Backed @ {back_odds} → Lay @ {lay_odds} | Hedge Stake: £{hedge_stake} | Locked P&L: {direction}£{locked_profit}")
 
         except Exception as e:
             print(f"⚠️ Could not check market {market_id}: {e}")
 
     # Save the updated hedges back to the CSV
+    df_ledger = update_running_total(df_ledger)
     df_ledger.to_csv(CSV_FILE, index=False)
 
     # Build deduplication set — cast Selection_ID to int to avoid "47972.0" vs "47972" mismatches
@@ -214,6 +238,7 @@ while True:
                                 "Stake": PAPER_STAKE,
                                 "Matched_Odds": best_back_price,
                                 "Kickoff": kickoff.strftime('%Y-%m-%d %H:%M:%S'),
+                                "Kickoff_Odds": None,
                                 "Result": "PENDING",
                                 "Profit": 0.00
                             }
@@ -225,6 +250,7 @@ while True:
                             print(f"🟢 [PAPER BET] {match_name} | Back Under 2.5 @ {best_back_price} | Stake: £{PAPER_STAKE} | Hedging at 15 min")
 
     if new_bets_found:
+        df_ledger = update_running_total(df_ledger)
         df_ledger.to_csv(CSV_FILE, index=False)
 
     print("💤 Routine complete. Sleeping for 5 minutes...\n")

@@ -45,8 +45,8 @@ CSV_FILE = os.path.join(_script_dir, "paper_trading_ledger_btts.csv")
 # If the ledger doesn't exist, create it with our new advanced columns
 if not os.path.exists(CSV_FILE):
     df_initial = pd.DataFrame(columns=[
-        "Timestamp", "Market_ID", "Selection_ID", "League", "Match", 
-        "Selection", "Stake", "Matched_Odds", "Result", "Profit"
+        "Timestamp", "Market_ID", "Selection_ID", "League", "Match",
+        "Selection", "Stake", "Matched_Odds", "Kickoff_Odds", "Result", "Profit", "Running_Total"
     ])
     df_initial.to_csv(CSV_FILE, index=False)
 
@@ -57,6 +57,12 @@ except Exception as e:
     print(f"Login failed: {e}")
     raise SystemExit(1)
 print("✅ Logged in successfully. Firing up the strategy engine...\n")
+
+def update_running_total(df):
+    settled_profits = df['Profit'].where(df['Result'] != 'PENDING', 0)
+    running = settled_profits.cumsum().round(2)
+    df['Running_Total'] = running.where(df['Result'] != 'PENDING')
+    return df
 
 # ==========================================
 # 4. THE CONTINUOUS EXECUTION ENGINE
@@ -73,6 +79,12 @@ while True:
         time.sleep(10)
         continue
 
+    # Ensure new columns exist for CSVs created before this update
+    if 'Kickoff_Odds' not in df_ledger.columns:
+        df_ledger['Kickoff_Odds'] = None
+    if 'Running_Total' not in df_ledger.columns:
+        df_ledger['Running_Total'] = None
+
     # ---------------------------------------------------------
     # ROUTINE A: SETTLE PENDING BETS
     # ---------------------------------------------------------
@@ -86,8 +98,21 @@ while True:
 
         try:
             # Ask Betfair for the current status of this specific market
-            settlement_check = trading.betting.list_market_book(market_ids=[market_id])[0]
-            
+            settlement_check = trading.betting.list_market_book(
+                market_ids=[market_id],
+                price_projection=price_projection(price_data=['EX_BEST_OFFERS'])
+            )[0]
+
+            # Capture kickoff odds on the first cycle we see the market go in-play
+            if settlement_check.inplay and pd.isna(df_ledger.at[index, 'Kickoff_Odds']):
+                for runner in settlement_check.runners:
+                    if runner.selection_id == selection_id:
+                        try:
+                            if runner.ex.available_to_back:
+                                df_ledger.at[index, 'Kickoff_Odds'] = runner.ex.available_to_back[0].price
+                        except Exception:
+                            pass
+
             if settlement_check.status == 'CLOSED':
                 # The match is over. Let's find out who won.
                 for runner in settlement_check.runners:
@@ -104,6 +129,7 @@ while True:
             print(f"⚠️ Could not check settlement for market {market_id}: {e}")
             
     # Save the updated settlements back to the CSV
+    df_ledger = update_running_total(df_ledger)
     df_ledger.to_csv(CSV_FILE, index=False)
 
     # Build deduplication set — cast Selection_ID to int to avoid "47972.0" vs "47972" mismatches
@@ -175,10 +201,11 @@ while True:
                                 "Selection": runner_name,
                                 "Stake": PAPER_STAKE,
                                 "Matched_Odds": best_back_price,
+                                "Kickoff_Odds": None,
                                 "Result": "PENDING",
                                 "Profit": 0.00
                             }
-                            
+
                             # Add the row to our dataframe
                             df_ledger = pd.concat([df_ledger, pd.DataFrame([new_row])], ignore_index=True)
                             placed_market_selection_ids.add(unique_id)
@@ -187,6 +214,7 @@ while True:
                             print(f"🟢 [PAPER BET] {match_name} | Back {runner_name} @ {best_back_price} | Stake: £{PAPER_STAKE}")
 
     if new_bets_found:
+        df_ledger = update_running_total(df_ledger)
         df_ledger.to_csv(CSV_FILE, index=False)
 
     print("💤 Routine complete. Sleeping for 5 minutes...\n")
