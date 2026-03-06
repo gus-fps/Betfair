@@ -40,7 +40,7 @@ EXCLUDED_TEAMS_SET = set(EXCLUDED_TEAMS)
 # ==========================================
 # 3. LEDGER INITIALIZATION
 # ==========================================
-CSV_FILE = os.path.join(_script_dir, "paper_trading_ledger.csv")
+CSV_FILE = os.path.join(_script_dir, "paper_trading_ledger_btts.csv")
 
 # If the ledger doesn't exist, create it with our new advanced columns
 if not os.path.exists(CSV_FILE):
