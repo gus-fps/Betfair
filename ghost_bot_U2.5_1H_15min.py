@@ -169,7 +169,7 @@ while True:
 
     # Build deduplication set — cast Selection_ID to int to avoid "47972.0" vs "47972" mismatches
     placed_market_selection_ids = set(
-        df_ledger['Market_ID'].astype(str) + "_" + df_ledger['Selection_ID'].apply(lambda x: str(int(float(x))))
+        df_ledger['Market_ID'].astype(float).astype(str) + "_" + df_ledger['Selection_ID'].apply(lambda x: str(int(float(x))))
     )
 
 
@@ -223,7 +223,7 @@ while True:
                     best_back_price = runner.ex.available_to_back[0].price
 
                     if MIN_ODDS <= best_back_price <= MAX_ODDS:
-                        unique_id = f"{market.market_id}_{runner.selection_id}"
+                        unique_id = f"{float(market.market_id)}_{runner.selection_id}"
 
                         if unique_id not in placed_market_selection_ids:
 
