@@ -1,1 +1,1 @@
-Timestamp,Market_ID,Selection_ID,League,Match,Selection,Stake,Matched_Odds,Result,Profit,Kickoff_Odds,Running_Total
+Timestamp,League,Match,Selection,Stake,Matched_Odds,Kickoff_Odds,Delta,Result,Profit,Running_Total,Market_ID,Selection_ID

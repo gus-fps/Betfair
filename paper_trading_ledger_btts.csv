@@ -1,18 +1,20 @@
-Timestamp,Market_ID,Selection_ID,League,Match,Selection,Stake,Matched_Odds,Kickoff_Odds,Result,Profit,Running_Total
-2026-03-06 17:56:20,1.254468793,30246,Portuguese Segunda Liga,Chaves v Academico de Viseu,Yes,10.0,2.02,,LOSS,-10.0,-10.0
-2026-03-06 18:01:21,1.254665109,30246,Spanish Segunda Division,Cadiz v Zaragoza,Yes,10.0,1.92,,LOSS,-10.0,-20.0
-2026-03-06 18:17:05,1.254376062,30246,Italian Serie A,Napoli v Torino,Yes,10.0,2.28,,WIN,12.8,-7.2
-2026-03-06 21:33:27,1.254705087,30246,Uruguayan Primera Division,Wanderers (Uru) v Deportivo Maldonado,Yes,10.0,1.99,,LOSS,-10.0,-17.2
-2026-03-07 09:40:13,1.254469171,30246,Portuguese Segunda Liga,Oliveirense v Torreense,Yes,10.0,1.83,1.87,LOSS,-10.0,-27.2
-2026-03-07 11:30:37,1.254611334,30246,Turkish Super League,Basaksehir v Goztepe,Yes,10.0,1.91,1.91,WIN,9.1,-18.1
-2026-03-07 12:30:49,1.254721775,30246,Italian Serie B,Spezia v AC Monza,Yes,10.0,1.93,1.86,WIN,9.3,-8.8
-2026-03-07 12:30:49,1.254722958,30246,Italian Serie B,Calcio Avellino SSD v Padova,Yes,10.0,1.99,2.06,LOSS,-10.0,-18.8
-2026-03-07 12:30:50,1.254722082,30246,Italian Serie B,Sudtirol v Entella,Yes,10.0,2.14,1.01,LOSS,-10.0,-28.8
-2026-03-07 12:30:50,1.254375941,30246,Italian Serie A,Cagliari v Como,Yes,10.0,2.14,2.18,WIN,11.4,-17.4
-2026-03-07 12:56:03,1.254468682,30246,Portuguese Segunda Liga,Portimonense v Pacos Ferreira,Yes,10.0,1.83,1.86,WIN,8.3,-9.1
-2026-03-07 13:46:40,1.25462032,30246,Spanish Segunda Division,Huesca v Albacete,Yes,10.0,1.91,,PENDING,0.0,
-2026-03-07 14:01:49,1.2544693,30246,Portuguese Segunda Liga,Penafiel v Farense,Yes,10.0,1.99,,PENDING,0.0,
-2026-03-07 14:32:14,1.254407078,30246,French Ligue 1,Nantes v Angers,Yes,10.0,2.22,2.32,PENDING,0.0,
-2026-03-07 14:47:33,1.254722812,30246,Italian Serie B,Venezia v Reggiana,Yes,10.0,2.2,,PENDING,0.0,
-2026-03-07 15:33:53,1.254377091,30246,Italian Serie A,Atalanta v Udinese,Yes,10.0,1.9,,PENDING,0.0,
-2026-03-07 16:04:55,1.254664466,30246,Spanish Segunda Division,Burgos v Mirandes,Yes,10.0,2.36,,PENDING,0.0,
+Timestamp,League,Match,Selection,Stake,Matched_Odds,Kickoff_Odds,Delta,Result,Profit,Running_Total,Market_ID,Selection_ID
+2026-03-06 17:56:20,Portuguese Segunda Liga,Chaves v Academico de Viseu,Yes,10.0,2.02,,,LOSS,-10.0,-10.0,1.254468793,30246
+2026-03-06 18:01:21,Spanish Segunda Division,Cadiz v Zaragoza,Yes,10.0,1.92,,,LOSS,-10.0,-20.0,1.254665109,30246
+2026-03-06 18:17:05,Italian Serie A,Napoli v Torino,Yes,10.0,2.28,,,WIN,12.8,-7.2,1.254376062,30246
+2026-03-06 21:33:27,Uruguayan Primera Division,Wanderers (Uru) v Deportivo Maldonado,Yes,10.0,1.99,,,LOSS,-10.0,-17.2,1.254705087,30246
+2026-03-07 09:40:13,Portuguese Segunda Liga,Oliveirense v Torreense,Yes,10.0,1.83,1.87,-0.04,LOSS,-10.0,-27.2,1.254469171,30246
+2026-03-07 11:30:37,Turkish Super League,Basaksehir v Goztepe,Yes,10.0,1.91,1.91,0.0,WIN,9.1,-18.1,1.254611334,30246
+2026-03-07 12:30:49,Italian Serie B,Spezia v AC Monza,Yes,10.0,1.93,1.86,0.07,WIN,9.3,-8.8,1.254721775,30246
+2026-03-07 12:30:49,Italian Serie B,Calcio Avellino SSD v Padova,Yes,10.0,1.99,2.06,-0.07,LOSS,-10.0,-18.8,1.254722958,30246
+2026-03-07 12:30:50,Italian Serie B,Sudtirol v Entella,Yes,10.0,2.14,1.01,1.13,LOSS,-10.0,-28.8,1.254722082,30246
+2026-03-07 12:30:50,Italian Serie A,Cagliari v Como,Yes,10.0,2.14,2.18,-0.04,WIN,11.4,-17.4,1.254375941,30246
+2026-03-07 12:56:03,Portuguese Segunda Liga,Portimonense v Pacos Ferreira,Yes,10.0,1.83,1.86,-0.03,WIN,8.3,-9.1,1.254468682,30246
+2026-03-07 13:46:40,Spanish Segunda Division,Huesca v Albacete,Yes,10.0,1.91,,,PENDING,0.0,,1.25462032,30246
+2026-03-07 14:01:49,Portuguese Segunda Liga,Penafiel v Farense,Yes,10.0,1.99,,,PENDING,0.0,,1.2544693,30246
+2026-03-07 14:32:14,French Ligue 1,Nantes v Angers,Yes,10.0,2.22,2.32,-0.1,LOSS,-10.0,-19.1,1.254407078,30246
+2026-03-07 14:47:33,Italian Serie B,Venezia v Reggiana,Yes,10.0,2.2,2.28,-0.08,PENDING,0.0,,1.254722812,30246
+2026-03-07 15:33:53,Italian Serie A,Atalanta v Udinese,Yes,10.0,1.9,1.9,0.0,PENDING,0.0,,1.254377091,30246
+2026-03-07 16:04:55,Spanish Segunda Division,Burgos v Mirandes,Yes,10.0,2.36,2.38,-0.02,PENDING,0.0,,1.254664466,30246
+2026-03-07 16:32:49,French Ligue 1,Auxerre v Strasbourg,Yes,10.0,1.89,1.88,0.01,PENDING,0.0,,1.254406607,30246
+2026-03-07 17:03:24,Italian Serie B,Modena v Cesena,Yes,10.0,1.82,,,PENDING,0.0,,1.254722629,30246

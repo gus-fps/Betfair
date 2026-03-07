@@ -1,10 +1,11 @@
-Timestamp,Market_ID,Selection_ID,League,Match,Selection,Stake,Matched_Odds,Result,Profit,Kickoff_Odds,Running_Total
-2026-03-06 18:18:58,1.254618896,58805,Belgian Pro League,RAAL La Louviere v Antwerp,Lay The Draw,4.17,3.4,LOSS,-10.01,,-10.01
-2026-03-06 18:34:00,1.254594524,58805,English Sky Bet Championship,Preston v Oxford Utd,Lay The Draw,4.08,3.45,WIN,4.08,,-5.93
-2026-03-07 10:32:23,1.254611119,58805,German Bundesliga 2,SV Darmstadt v Holstein Kiel,Lay The Draw,3.39,3.95,WIN,3.39,4.0,-2.54
-2026-03-07 10:32:23,1.254662356,58805,German Bundesliga 2,Nurnberg v Fortuna Dusseldorf,Lay The Draw,3.64,3.75,WIN,3.64,3.8,1.1
-2026-03-07 11:02:32,1.25461016,58805,English Sky Bet Championship,Blackburn v Portsmouth,Lay The Draw,4.44,3.25,PENDING,0.0,,
-2026-03-07 11:02:32,1.254618173,58805,English Sky Bet Championship,Hull v Millwall,Lay The Draw,4.08,3.45,WIN,4.08,3.6,5.18
-2026-03-07 13:34:44,1.254617003,58805,English Sky Bet Championship,Swansea v Stoke,Lay The Draw,3.7,3.7,PENDING,0.0,3.65,
-2026-03-07 13:34:44,1.254618065,58805,English Sky Bet Championship,Bristol City v Coventry,Lay The Draw,3.39,3.95,PENDING,0.0,3.85,
-2026-03-07 14:00:15,1.254393716,58805,Dutch Eredivisie,FC Groningen v Ajax,Lay The Draw,3.39,3.95,PENDING,0.0,3.85,
+Timestamp,League,Match,Selection,Stake,Matched_Odds,Kickoff_Odds,Delta,Result,Profit,Running_Total,Market_ID,Selection_ID
+06/03/2026 18:18,Belgian Pro League,RAAL La Louviere v Antwerp,Lay The Draw,4.17,3.4,,,LOSS,-10.01,-10.01,1.254618896,58805
+06/03/2026 18:34,English Sky Bet Championship,Preston v Oxford Utd,Lay The Draw,4.08,3.45,,,WIN,4.08,-5.93,1.254594524,58805
+07/03/2026 10:32,German Bundesliga 2,SV Darmstadt v Holstein Kiel,Lay The Draw,3.39,3.95,4.0,-0.05,WIN,3.39,-2.54,1.254611119,58805
+07/03/2026 10:32,German Bundesliga 2,Nurnberg v Fortuna Dusseldorf,Lay The Draw,3.64,3.75,3.8,-0.05,WIN,3.64,1.1,1.254662356,58805
+07/03/2026 11:02,English Sky Bet Championship,Blackburn v Portsmouth,Lay The Draw,4.44,3.25,,,LOSS,-10.01,-8.91,1.25461016,58805
+07/03/2026 11:02,English Sky Bet Championship,Hull v Millwall,Lay The Draw,4.08,3.45,3.6,-0.15,WIN,4.08,-4.83,1.254618173,58805
+07/03/2026 13:34,English Sky Bet Championship,Swansea v Stoke,Lay The Draw,3.7,3.7,3.65,0.05,WIN,3.7,-1.13,1.254617003,58805
+07/03/2026 13:34,English Sky Bet Championship,Bristol City v Coventry,Lay The Draw,3.39,3.95,3.85,0.1,WIN,3.39,2.26,1.254618065,58805
+07/03/2026 14:00,Dutch Eredivisie,FC Groningen v Ajax,Lay The Draw,3.39,3.95,3.85,0.1,WIN,3.39,5.65,1.254393716,58805
+07/03/2026 16:34,French Ligue 1,Auxerre v Strasbourg,Lay The Draw,3.7,3.7,3.55,0.15,PENDING,0.0,,1.254406608,58805

@@ -46,8 +46,9 @@ CSV_FILE = os.path.join(_script_dir, "paper_trading_ledger_u25_1h.csv")
 # when 15 minutes have elapsed in-play and trigger the hedge.
 if not os.path.exists(CSV_FILE):
     df_initial = pd.DataFrame(columns=[
-        "Timestamp", "Market_ID", "Selection_ID", "League", "Match",
-        "Selection", "Stake", "Matched_Odds", "Kickoff", "Kickoff_Odds", "Result", "Profit", "Running_Total"
+        "Timestamp", "League", "Match", "Selection", "Stake",
+        "Matched_Odds", "Kickoff", "Kickoff_Odds", "Delta", "Result", "Profit", "Running_Total",
+        "Market_ID", "Selection_ID"
     ])
     df_initial.to_csv(CSV_FILE, index=False)
 
@@ -60,6 +61,7 @@ except Exception as e:
 print("✅ Logged in successfully. Firing up the strategy engine...\n")
 
 def update_running_total(df):
+    df['Delta'] = (df['Matched_Odds'] - df['Kickoff_Odds']).round(2)
     settled_profits = df['Profit'].where(df['Result'] != 'PENDING', 0)
     running = settled_profits.cumsum().round(2)
     df['Running_Total'] = running.where(df['Result'] != 'PENDING')
@@ -83,6 +85,8 @@ while True:
     # Ensure new columns exist for CSVs created before this update
     if 'Kickoff_Odds' not in df_ledger.columns:
         df_ledger['Kickoff_Odds'] = None
+    if 'Delta' not in df_ledger.columns:
+        df_ledger['Delta'] = None
     if 'Running_Total' not in df_ledger.columns:
         df_ledger['Running_Total'] = None
 
@@ -165,7 +169,7 @@ while True:
 
     # Save the updated hedges back to the CSV
     df_ledger = update_running_total(df_ledger)
-    df_ledger.to_csv(CSV_FILE, index=False)
+    df_ledger.to_csv(CSV_FILE, index=False, columns=["Timestamp", "League", "Match", "Selection", "Stake", "Matched_Odds", "Kickoff", "Kickoff_Odds", "Delta", "Result", "Profit", "Running_Total", "Market_ID", "Selection_ID"])
 
     # Build deduplication set — cast Selection_ID to int to avoid "47972.0" vs "47972" mismatches
     placed_market_selection_ids = set(
@@ -251,7 +255,7 @@ while True:
 
     if new_bets_found:
         df_ledger = update_running_total(df_ledger)
-        df_ledger.to_csv(CSV_FILE, index=False)
+        df_ledger.to_csv(CSV_FILE, index=False, columns=["Timestamp", "League", "Match", "Selection", "Stake", "Matched_Odds", "Kickoff", "Kickoff_Odds", "Delta", "Result", "Profit", "Running_Total", "Market_ID", "Selection_ID"])
 
     print("💤 Routine complete. Sleeping for 5 minutes...\n")
     time.sleep(300)

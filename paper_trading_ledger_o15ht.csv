@@ -1,17 +1,19 @@
-Timestamp,Market_ID,Selection_ID,League,Match,Selection,Stake,Matched_Odds,Result,Profit,Kickoff_Odds,Running_Total
-2026-03-06 18:14:41,1.254392556,1221386,German Bundesliga,Bayern Munich v Mgladbach,Over 1.5 Goals,10.0,1.8,WIN,8.0,,8.0
-2026-03-06 18:19:41,1.254407327,1221386,French Ligue 1,Paris St-G v Monaco,Over 1.5 Goals,10.0,1.97,LOSS,-10.0,,-2.0
-2026-03-07 09:41:19,1.254469177,1221386,Portuguese Segunda Liga,Oliveirense v Torreense,Over 1.5 Goals,10.0,3.2,WIN,22.0,3.35,20.0
-2026-03-07 12:31:38,1.254722046,1221386,Italian Serie B,Sudtirol v Entella,Over 1.5 Goals,10.0,3.65,LOSS,-10.0,3.2,10.0
-2026-03-07 12:31:38,1.254722964,1221386,Italian Serie B,Calcio Avellino SSD v Padova,Over 1.5 Goals,10.0,3.6,LOSS,-10.0,3.45,0.0
-2026-03-07 12:31:38,1.254721739,1221386,Italian Serie B,Spezia v AC Monza,Over 1.5 Goals,10.0,3.25,WIN,22.5,3.05,22.5
-2026-03-07 12:31:39,1.254468688,1221386,Portuguese Segunda Liga,Portimonense v Pacos Ferreira,Over 1.5 Goals,10.0,3.3,WIN,23.0,3.75,45.5
-2026-03-07 13:01:51,1.25438882,1221386,German Bundesliga,FC Heidenheim v Hoffenheim,Over 1.5 Goals,10.0,2.24,PENDING,0.0,,
-2026-03-07 13:01:51,1.254388533,1221386,German Bundesliga,Wolfsburg v Hamburger SV,Over 1.5 Goals,10.0,2.7,WIN,17.0,3.05,62.5
-2026-03-07 13:01:51,1.254389148,1221386,German Bundesliga,RB Leipzig v Augsburg,Over 1.5 Goals,10.0,2.1,LOSS,-10.0,2.14,52.5
-2026-03-07 13:01:52,1.254388699,1221386,German Bundesliga,Freiburg v Leverkusen,Over 1.5 Goals,10.0,2.82,WIN,18.2,2.76,70.7
-2026-03-07 13:01:52,1.25438951,1221386,German Bundesliga,Mainz v Stuttgart,Over 1.5 Goals,10.0,2.4,PENDING,0.0,,
-2026-03-07 14:03:11,1.254469306,1221386,Portuguese Segunda Liga,Penafiel v Farense,Over 1.5 Goals,10.0,3.6,PENDING,0.0,3.6,
-2026-03-07 14:34:07,1.254407085,1221386,French Ligue 1,Nantes v Angers,Over 1.5 Goals,10.0,4.1,PENDING,0.0,4.1,
-2026-03-07 14:49:35,1.254722776,1221386,Italian Serie B,Venezia v Reggiana,Over 1.5 Goals,10.0,2.46,PENDING,0.0,,
-2026-03-07 16:02:08,1.254392434,1221386,German Bundesliga,FC Koln v Dortmund,Over 1.5 Goals,10.0,2.48,PENDING,0.0,,
+Timestamp,League,Match,Selection,Stake,Matched_Odds,Kickoff_Odds,Delta,Result,Profit,Running_Total,Market_ID,Selection_ID
+2026-03-06 18:14:41,German Bundesliga,Bayern Munich v Mgladbach,Over 1.5 Goals,10.0,1.8,,,WIN,8.0,8.0,1.254392556,1221386
+2026-03-06 18:19:41,French Ligue 1,Paris St-G v Monaco,Over 1.5 Goals,10.0,1.97,,,LOSS,-10.0,-2.0,1.254407327,1221386
+2026-03-07 09:41:19,Portuguese Segunda Liga,Oliveirense v Torreense,Over 1.5 Goals,10.0,3.2,3.35,-0.15,WIN,22.0,20.0,1.254469177,1221386
+2026-03-07 12:31:38,Italian Serie B,Sudtirol v Entella,Over 1.5 Goals,10.0,3.65,3.2,0.45,LOSS,-10.0,10.0,1.254722046,1221386
+2026-03-07 12:31:38,Italian Serie B,Calcio Avellino SSD v Padova,Over 1.5 Goals,10.0,3.6,3.45,0.15,LOSS,-10.0,0.0,1.254722964,1221386
+2026-03-07 12:31:38,Italian Serie B,Spezia v AC Monza,Over 1.5 Goals,10.0,3.25,3.05,0.2,WIN,22.5,22.5,1.254721739,1221386
+2026-03-07 12:31:39,Portuguese Segunda Liga,Portimonense v Pacos Ferreira,Over 1.5 Goals,10.0,3.3,3.75,-0.45,WIN,23.0,45.5,1.254468688,1221386
+2026-03-07 13:01:51,German Bundesliga,FC Heidenheim v Hoffenheim,Over 1.5 Goals,10.0,2.24,,,PENDING,0.0,,1.25438882,1221386
+2026-03-07 13:01:51,German Bundesliga,Wolfsburg v Hamburger SV,Over 1.5 Goals,10.0,2.7,3.05,-0.35,WIN,17.0,62.5,1.254388533,1221386
+2026-03-07 13:01:51,German Bundesliga,RB Leipzig v Augsburg,Over 1.5 Goals,10.0,2.1,2.14,-0.04,LOSS,-10.0,52.5,1.254389148,1221386
+2026-03-07 13:01:52,German Bundesliga,Freiburg v Leverkusen,Over 1.5 Goals,10.0,2.82,2.76,0.06,WIN,18.2,70.7,1.254388699,1221386
+2026-03-07 13:01:52,German Bundesliga,Mainz v Stuttgart,Over 1.5 Goals,10.0,2.4,,,PENDING,0.0,,1.25438951,1221386
+2026-03-07 14:03:11,Portuguese Segunda Liga,Penafiel v Farense,Over 1.5 Goals,10.0,3.6,3.6,0.0,LOSS,-10.0,60.7,1.254469306,1221386
+2026-03-07 14:34:07,French Ligue 1,Nantes v Angers,Over 1.5 Goals,10.0,4.1,4.1,0.0,LOSS,-10.0,50.7,1.254407085,1221386
+2026-03-07 14:49:35,Italian Serie B,Venezia v Reggiana,Over 1.5 Goals,10.0,2.46,2.36,0.1,LOSS,-10.0,40.7,1.254722776,1221386
+2026-03-07 16:02:08,German Bundesliga,FC Koln v Dortmund,Over 1.5 Goals,10.0,2.48,2.38,0.1,PENDING,0.0,,1.254392434,1221386
+2026-03-07 16:33:17,French Ligue 1,Auxerre v Strasbourg,Over 1.5 Goals,10.0,3.15,3.25,-0.1,PENDING,0.0,,1.254406614,1221386
+2026-03-07 17:03:30,Italian Serie B,Modena v Cesena,Over 1.5 Goals,10.0,3.0,,,PENDING,0.0,,1.254722593,1221386
