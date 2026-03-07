@@ -8,4 +8,6 @@ Timestamp,League,Match,Selection,Stake,Matched_Odds,Kickoff_Odds,Delta,Result,Pr
 07/03/2026 13:34,English Sky Bet Championship,Swansea v Stoke,Lay The Draw,3.7,3.7,3.65,0.05,WIN,3.7,-1.13,1.254617003,58805
 07/03/2026 13:34,English Sky Bet Championship,Bristol City v Coventry,Lay The Draw,3.39,3.95,3.85,0.1,WIN,3.39,2.26,1.254618065,58805
 07/03/2026 14:00,Dutch Eredivisie,FC Groningen v Ajax,Lay The Draw,3.39,3.95,3.85,0.1,WIN,3.39,5.65,1.254393716,58805
-07/03/2026 16:34,French Ligue 1,Auxerre v Strasbourg,Lay The Draw,3.7,3.7,3.55,0.15,PENDING,0.0,,1.254406608,58805
+07/03/2026 16:34,French Ligue 1,Auxerre v Strasbourg,Lay The Draw,3.7,3.7,3.55,0.15,LOSS,-9.99,-4.34,1.254406608,58805
+2026-03-07 18:30:21,Dutch Eredivisie,Excelsior v Heerenveen,Lay The Draw,3.51,3.85,3.95,,PENDING,0.0,,1.254394031,58805
+2026-03-07 18:35:23,French Ligue 1,Toulouse v Marseille,Lay The Draw,3.57,3.8,3.65,,PENDING,0.0,,1.254407442,58805
