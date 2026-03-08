@@ -298,16 +298,18 @@ while True:
                         if runner.ex.available_to_lay:
                             lay_price = runner.ex.available_to_lay[0].price
                             if LAY_MIN_ODDS <= lay_price <= LAY_MAX_ODDS:
-                                liability = round(PAPER_STAKE * (lay_price - 1), 2)
+                                # Fixed liability of £PAPER_STAKE (same approach as LTD bot)
+                                # lay_stake = liability / (odds - 1)
+                                lay_stake = round(PAPER_STAKE / (lay_price - 1), 2)
                                 new_row = {
                                     "Timestamp":    datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                                     "League":       info['league_name'],
                                     "Match":        info['match_name'],
                                     "Selection":    f"Lay {info['home_name']}",
-                                    "Lay_Stake":    PAPER_STAKE,
+                                    "Lay_Stake":    lay_stake,
                                     "Lay_Odds":     lay_price,
                                     "Prematch_Odds": info['prematch_odds'],
-                                    "Liability":    liability,
+                                    "Liability":    PAPER_STAKE,
                                     "Hedge_Stake":  None,
                                     "Hedge_Odds":   None,
                                     "Locked_Profit": None,
@@ -320,7 +322,7 @@ while True:
                                 placed_market_ids.add(unique_id)
                                 new_bets_found = True
                                 game_min_est = round(clock_minutes)
-                                print(f"🔴 [PAPER LAY] {info['match_name']} | Lay {info['home_name']} @ {lay_price} | ~{game_min_est}' | Liability: £{liability} | Pre-match: {info['prematch_odds']}")
+                                print(f"🔴 [PAPER LAY] {info['match_name']} | Lay {info['home_name']} @ {lay_price} | ~{game_min_est}' | Stake: £{lay_stake} | Liability: £{PAPER_STAKE} | Pre-match: {info['prematch_odds']}")
                         break
 
     # Clean up approved markets that have passed the 1st half window
