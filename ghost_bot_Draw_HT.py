@@ -31,8 +31,8 @@ with open(os.path.join(_script_dir, "strategy_config.json")) as f:
     _config = json.load(f)
 
 PAPER_STAKE     = _config["paper_stake"]
-MIN_ODDS        = _config["min_odds"]
-MAX_ODDS        = _config["max_odds"]
+MIN_ODDS        = _config["draw_ht_min_odds"]
+MAX_ODDS        = _config["draw_ht_max_odds"]
 ALLOWED_LEAGUES = _config["draw_ht_allowed_leagues"]
 EXCLUDED_TEAMS  = _config["draw_ht_excluded_teams"]
 EXCLUDED_TEAMS_SET = set(t.lower() for t in EXCLUDED_TEAMS)
@@ -185,7 +185,7 @@ while True:
             
             for runner in market_book.runners:
                 runner_name = next((r.runner_name for r in market.runners if r.selection_id == runner.selection_id), "Unknown")
-                if runner_name == "The Draw":
+                if runner_name != "The Draw":
                     continue
 
                 if runner.ex.available_to_back:
