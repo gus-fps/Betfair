@@ -252,5 +252,16 @@ while True:
         df_ledger = update_running_total(df_ledger)
         df_ledger.to_csv(CSV_FILE, index=False, columns=["Timestamp", "League", "Match", "Selection", "Stake", "Matched_Odds", "Kickoff_Odds", "Delta", "Result", "Profit", "Running_Total", "Market_ID", "Selection_ID"])
 
-    print("💤 Scan complete. Sleeping for 1 minute...\n")
-    time.sleep(60)
+    # Adaptive sleep: only poll every minute when matches are near the entry window.
+    # Otherwise fall back to 5-minute cycles to keep API calls low.
+    # Window check uses the same catalogue already fetched above (no extra API call).
+    near_window = any(
+        68 <= (datetime.now(timezone.utc) - m.market_start_time).total_seconds() / 60 <= 98
+        for m in (catalogue or [])
+    )
+    if near_window:
+        print("💤 Matches near window. Sleeping for 1 minute...\n")
+        time.sleep(60)
+    else:
+        print("💤 No matches near window. Sleeping for 5 minutes...\n")
+        time.sleep(300)
