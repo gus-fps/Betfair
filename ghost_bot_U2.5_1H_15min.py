@@ -206,8 +206,7 @@ while True:
             if not (0 <= minutes_to_kickoff <= 90):
                 continue
 
-            if any(excl in runner.lower() or runner.lower() in excl
-                   for runner in runners for excl in EXCLUDED_TEAMS_SET):
+            if any(excl in match_name.lower() for excl in EXCLUDED_TEAMS_SET):
                 continue
 
             try:
