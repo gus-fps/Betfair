@@ -35,7 +35,7 @@ MIN_ODDS        = _config["min_odds"]
 MAX_ODDS        = _config["max_odds"]
 ALLOWED_LEAGUES = _config["allowed_leagues"]
 EXCLUDED_TEAMS  = _config["excluded_teams"]
-EXCLUDED_TEAMS_SET = set(EXCLUDED_TEAMS)
+EXCLUDED_TEAMS_SET = set(t.lower() for t in EXCLUDED_TEAMS)
 
 # ==========================================
 # 3. LEDGER INITIALIZATION
@@ -171,7 +171,7 @@ while True:
             if not (0 <= minutes_to_kickoff <= 90):
                 continue
 
-            if any(excl in match_name for excl in EXCLUDED_TEAMS_SET):
+            if any(excl in match_name.lower() for excl in EXCLUDED_TEAMS_SET):
                 continue
                 
             try:
