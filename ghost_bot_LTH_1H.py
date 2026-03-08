@@ -42,12 +42,22 @@ EXCLUDED_TEAMS_SET = set(t.lower() for t in EXCLUDED_TEAMS)
 # ==========================================
 # TIMING NOTES
 # ==========================================
-# Entry window: in-play, 1st half only (including stoppage time).
+# Entry window: in-play, 1st half only, from the 38th minute onwards.
 # Represented as clock minutes elapsed since the scheduled kickoff.
-#   0–52 clock min ≈ 1st half + up to 7 min of stoppage time.
+#   38–52 clock min ≈ game minutes 38–45 + up to 7 min of stoppage time.
 #   The market.status == 'OPEN' check provides an additional safeguard
 #   against accidentally entering during the halftime break or 2nd half
 #   (Betfair suspends the market at halftime and during goals).
+#
+# SCORE DETECTION — why no explicit score check is needed:
+# The strategy only wants to enter at scores 0-0, 0-1, 1-1, or 1-2.
+# The lay odds range (2.50–5.09) handles this implicitly:
+#   Home winning 1-0 at 38+ min (pre-match fav 1.38–2.15) → in-play lay
+#   odds collapse to ~1.2–1.8, well below 2.50 → excluded.
+#   Home winning 2-0 or 2-1 → odds even shorter → excluded.
+#   Home losing badly 0-2/0-3 → odds 7.0+ → above 5.09 → excluded.
+#   What remains in 2.50–5.09 at this stage maps precisely to 0-0,
+#   0-1, 1-1, and 1-2 — matching the target scorelines exactly.
 #
 # Hedge: 15 minutes after the lay bet is placed, the bot backs the home
 # team at the current market price to lock in an equal profit/loss on
@@ -61,7 +71,8 @@ EXCLUDED_TEAMS_SET = set(t.lower() for t in EXCLUDED_TEAMS)
 # bet is settled as a standard lay (WIN if home didn't win, LOSS if home won).
 
 HEDGE_MINUTES    = 15
-FIRST_HALF_MAX   = 52   # max clock minutes since kickoff for 1st half entry
+FIRST_HALF_MIN   = 38   # earliest clock minute for entry (≈ game minute 38)
+FIRST_HALF_MAX   = 52   # latest clock minute for entry (covers stoppage time)
 
 # ==========================================
 # 3. LEDGER INITIALIZATION
@@ -269,7 +280,8 @@ while True:
                     markets_to_remove.append(market.market_id)
                     continue
 
-                if clock_minutes < 0:
+                # Not yet at the entry window (before 38th minute)
+                if clock_minutes < FIRST_HALF_MIN:
                     continue
 
                 # Market must be active (not suspended during goals/halftime)
