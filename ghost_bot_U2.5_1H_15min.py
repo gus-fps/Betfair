@@ -183,7 +183,7 @@ while True:
     strategy_filter = market_filter(
         event_type_ids=['1'],
         competition_ids=ALLOWED_LEAGUES,
-        market_type_codes=['FIRST_HALF_GOALS_25']
+        market_type_codes=['OVER_UNDER_25']
     )
 
     catalogue = trading.betting.list_market_catalogue(
