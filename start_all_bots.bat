@@ -10,3 +10,4 @@ start "BTTS No" cmd /k python ghost_bot_BTTS_No.py
 start "O1.5 FT"  cmd /k python ghost_bot_O15_final.py
 start "O2.5 UY"  cmd /k python ghost_bot_O2.5_UY_KR.py
 start "O2.5 ARG" cmd /k python ghost_bot_O2.5_ARG.py
+start "LTH 1H"   cmd /k python ghost_bot_LTH_1H.py
