@@ -202,8 +202,6 @@ while True:
         for market in catalogue:
             match_name = market.event.name
             league_name = market.competition.name if market.competition else "Unknown"
-            runners = {runner.runner_name for runner in market.runners}  # set for O(1) lookup
-
             # CRITERIA 3: Only act within 90 minutes of kick-off
             kickoff = market.market_start_time  # UTC datetime from Betfair
             minutes_to_kickoff = (kickoff - datetime.now(timezone.utc)).total_seconds() / 60
