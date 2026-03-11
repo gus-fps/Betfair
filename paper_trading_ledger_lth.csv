@@ -1,0 +1,5 @@
+Timestamp,League,Match,Selection,Lay_Stake,Lay_Odds,Prematch_Odds,Liability,Hedge_Stake,Hedge_Odds,Locked_Profit,Result,Running_Total,Market_ID,Selection_ID
+2026-03-08 14:40:13,Greek Super League,Asteras Tripolis v Panserraikos,Lay Asteras Tripolis,2.86,4.5,1.63,10.0,0.83,15.5,2.03,HEDGED,2.03,1.254535509,1300930
+2026-03-08 16:54:10,French Ligue 1,Brest v Le Havre,Lay Brest,6.41,2.56,1.93,10.0,12.34,1.33,-5.93,HEDGED,-3.9,1.254406834,669348
+2026-03-08 18:18:00,Spanish Segunda Division,Racing Santander v Cordoba,Lay Racing Santander,6.1,2.64,1.99,10.0,6.55,2.46,-0.45,HEDGED,-4.35,1.254714741,24072
+2026-03-08 18:44:43,Portuguese Primeira Liga,Benfica v Porto,Lay Benfica,2.86,4.5,2.06,10.0,0.86,15.0,2.0,HEDGED,-2.35,1.254721818,48783

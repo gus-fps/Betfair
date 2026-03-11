@@ -10,14 +10,36 @@ Timestamp,League,Match,Selection,Stake,Matched_Odds,Kickoff_Odds,Delta,Result,Pr
 2026-03-07 12:30:50,Italian Serie B,Sudtirol v Entella,Yes,10.0,2.14,1.01,1.13,LOSS,-10.0,-28.8,1.254722082,30246
 2026-03-07 12:30:50,Italian Serie A,Cagliari v Como,Yes,10.0,2.14,2.18,-0.04,WIN,11.4,-17.4,1.254375941,30246
 2026-03-07 12:56:03,Portuguese Segunda Liga,Portimonense v Pacos Ferreira,Yes,10.0,1.83,1.86,-0.03,WIN,8.3,-9.1,1.254468682,30246
-2026-03-07 13:46:40,Spanish Segunda Division,Huesca v Albacete,Yes,10.0,1.91,,,PENDING,0.0,,1.25462032,30246
-2026-03-07 14:01:49,Portuguese Segunda Liga,Penafiel v Farense,Yes,10.0,1.99,,,PENDING,0.0,,1.2544693,30246
-2026-03-07 14:32:14,French Ligue 1,Nantes v Angers,Yes,10.0,2.22,2.32,-0.1,LOSS,-10.0,-19.1,1.254407078,30246
-2026-03-07 14:47:33,Italian Serie B,Venezia v Reggiana,Yes,10.0,2.2,2.28,-0.08,LOSS,-10.0,-29.1,1.254722812,30246
-2026-03-07 15:33:53,Italian Serie A,Atalanta v Udinese,Yes,10.0,1.9,1.9,0.0,WIN,9.0,-20.1,1.254377091,30246
-2026-03-07 16:04:55,Spanish Segunda Division,Burgos v Mirandes,Yes,10.0,2.36,2.38,-0.02,LOSS,-10.0,-30.1,1.254664466,30246
-2026-03-07 16:32:49,French Ligue 1,Auxerre v Strasbourg,Yes,10.0,1.89,1.88,0.01,LOSS,-10.0,-40.1,1.254406607,30246
-2026-03-07 17:03:24,Italian Serie B,Modena v Cesena,Yes,10.0,1.82,1.78,,LOSS,-10.0,-50.1,1.254722629,30246
-2026-03-07 18:19:05,Italian Serie A,Juventus v Pisa,Yes,10.0,2.48,2.32,,PENDING,0.0,,1.254376638,30246
-2026-03-07 18:34:12,Uruguayan Primera Division,Progreso v Albion FC,Yes,10.0,2.04,2.06,,PENDING,0.0,,1.254704997,30246
-2026-03-07 18:34:13,Spanish Segunda Division,Malaga v Valladolid,Yes,10.0,1.92,1.92,,PENDING,0.0,,1.254631144,30246
+2026-03-07 13:46:40,Spanish Segunda Division,Huesca v Albacete,Yes,10.0,1.91,,,LOSS,-10.0,-19.1,1.25462032,30246
+2026-03-07 14:01:49,Portuguese Segunda Liga,Penafiel v Farense,Yes,10.0,1.99,,,WIN,9.9,-9.2,1.2544693,30246
+2026-03-07 14:32:14,French Ligue 1,Nantes v Angers,Yes,10.0,2.22,2.32,-0.1,LOSS,-10.0,-19.2,1.254407078,30246
+2026-03-07 14:47:33,Italian Serie B,Venezia v Reggiana,Yes,10.0,2.2,2.28,-0.08,LOSS,-10.0,-29.2,1.254722812,30246
+2026-03-07 15:33:53,Italian Serie A,Atalanta v Udinese,Yes,10.0,1.9,1.9,0.0,WIN,9.0,-20.2,1.254377091,30246
+2026-03-07 16:04:55,Spanish Segunda Division,Burgos v Mirandes,Yes,10.0,2.36,2.38,-0.02,LOSS,-10.0,-30.2,1.254664466,30246
+2026-03-07 16:32:49,French Ligue 1,Auxerre v Strasbourg,Yes,10.0,1.89,1.88,0.01,LOSS,-10.0,-40.2,1.254406607,30246
+2026-03-07 17:03:24,Italian Serie B,Modena v Cesena,Yes,10.0,1.82,1.78,0.04,LOSS,-10.0,-50.2,1.254722629,30246
+2026-03-07 18:19:05,Italian Serie A,Juventus v Pisa,Yes,10.0,2.48,2.32,0.16,LOSS,-10.0,-60.2,1.254376638,30246
+2026-03-07 18:34:12,Uruguayan Primera Division,Progreso v Albion FC,Yes,10.0,2.04,2.06,-0.02,WIN,10.4,-49.8,1.254704997,30246
+2026-03-07 18:34:13,Spanish Segunda Division,Malaga v Valladolid,Yes,10.0,1.92,1.92,0.0,WIN,9.2,-40.6,1.254631144,30246
+2026-03-08 06:02:08,South Korean K1 League,FC Anyang v Jeju Utd,Yes,10.0,1.81,12.0,-10.19,WIN,8.1,-32.5,1.254700855,30246
+2026-03-08 09:13:47,Turkish Super League,Rizespor v Antalyaspor,Yes,10.0,1.92,1.91,0.01,LOSS,-10.0,-42.5,1.254677852,30246
+2026-03-08 09:33:53,Portuguese Segunda Liga,Felgueiras v Vizela,Yes,10.0,1.98,1.98,0.0,LOSS,-10.0,-52.5,1.254468466,30246
+2026-03-08 11:19:20,Uruguayan Primera Division,Racing Club (Uru) v Cerro,Yes,10.0,2.22,2.2,0.02,LOSS,-10.0,-62.5,1.254717827,30246
+2026-03-08 11:34:24,Spanish Segunda Division,Las Palmas v AD Ceuta FC,Yes,10.0,2.16,2.04,0.12,LOSS,-10.0,-72.5,1.254665433,30246
+2026-03-08 11:34:24,Turkish Super League,Konyaspor v Kasimpasa,Yes,10.0,1.99,2.02,-0.03,WIN,9.9,-62.6,1.254664604,30246
+2026-03-08 12:34:48,Italian Serie B,Mantova v Juve Stabia,Yes,10.0,1.91,1.95,-0.04,LOSS,-10.0,-72.6,1.254722172,30246
+2026-03-08 12:34:48,French Ligue 1,Lens v Metz,Yes,10.0,1.99,1.86,0.13,LOSS,-10.0,-82.6,1.254406957,30246
+2026-03-08 12:34:48,Italian Serie A,Bologna v Verona,Yes,10.0,2.14,2.22,-0.08,WIN,11.4,-71.2,1.254376515,30246
+2026-03-08 14:00:29,Portuguese Segunda Liga,Maritimo v Porto B,Yes,10.0,2.18,2.3,-0.12,WIN,11.8,-59.4,1.254468574,30246
+2026-03-08 14:49:21,French Ligue 1,Lille v Lorient,Yes,10.0,2.06,2.12,-0.06,WIN,10.6,-48.8,1.254406486,30246
+2026-03-08 14:49:21,French Ligue 1,Brest v Le Havre,Yes,10.0,1.96,2.16,-0.2,LOSS,-10.0,-58.8,1.254406832,30246
+2026-03-08 15:34:41,Italian Serie A,Genoa v Roma,Yes,10.0,2.22,2.2,0.02,WIN,12.2,-46.6,1.254376394,30246
+2026-03-08 15:34:42,Turkish Super League,Fenerbahce v Samsunspor,Yes,10.0,2.12,2.04,0.08,WIN,11.2,-35.4,1.254678068,30246
+2026-03-08 16:30:08,Portuguese Segunda Liga,Lusitania Futebol Clube v Sporting Lisbon B,Yes,10.0,1.87,,,LOSS,-10.0,-45.4,1.25446904,30246
+2026-03-08 18:15:47,French Ligue 1,Lyon v Paris FC,Yes,10.0,1.89,1.06,0.83,WIN,8.9,-36.5,1.254406365,30246
+2026-03-08 18:30:50,Uruguayan Primera Division,Juventud De Las Piedras v Nacional (Uru),Yes,10.0,2.2,2.28,-0.08,WIN,12.0,-24.5,1.254717539,30246
+2026-03-08 21:31:30,Uruguayan Primera Division,Defensor Sporting v Central Espanol,Yes,10.0,2.04,2.06,-0.02,LOSS,-10.0,-34.5,1.254705181,30246
+2026-03-09 17:40:59,Portuguese Segunda Liga,Benfica B v Feirense,Yes,10.0,1.95,1.94,0.01,LOSS,-10.0,-44.5,1.254468932,30246
+2026-03-09 18:16:05,Italian Serie A,Lazio v Sassuolo,Yes,10.0,1.91,1.43,0.48,WIN,9.1,-35.4,1.254377212,30246
+2026-03-09 19:11:19,Spanish Segunda Division,Almeria v Leonesa,Yes,10.0,1.83,1.81,0.02,LOSS,-10.0,-45.4,1.254707097,30246
+2026-03-09 23:01:45,Uruguayan Primera Division,Boston River v Liverpool Montevideo,Yes,10.0,2.12,,,LOSS,-10.0,-55.4,1.254718045,30246

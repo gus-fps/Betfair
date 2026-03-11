@@ -67,11 +67,34 @@ def update_running_total(df):
     return df
 
 # ==========================================
+# SESSION MANAGEMENT
+# ==========================================
+last_keepalive = datetime.now(timezone.utc)
+
+def refresh_session():
+    """Keep Betfair session alive. Tries keep_alive() first; falls back to full re-login."""
+    try:
+        trading.keep_alive()
+        print("🔄 Session refreshed (keep-alive).")
+    except Exception:
+        print("⚠️ Keep-alive failed — attempting full re-login...")
+        try:
+            trading.login()
+            print("✅ Re-login successful.")
+        except Exception as login_err:
+            print(f"❌ Re-login failed: {login_err}")
+
+# ==========================================
 # 4. THE CONTINUOUS EXECUTION ENGINE
 # ==========================================
 while True:
     current_time = datetime.now().strftime('%H:%M:%S')
     print(f"[{current_time}] 📡 Scanning markets and checking settlements...")
+
+    # Keep session alive — ping Betfair every 2 hours to prevent token expiry
+    if (datetime.now(timezone.utc) - last_keepalive).total_seconds() > 7200:
+        refresh_session()
+        last_keepalive = datetime.now(timezone.utc)
 
     # Load the current ledger into Pandas
     try:
@@ -130,7 +153,12 @@ while True:
                             df_ledger.at[index, 'Profit'] = -stake
                             print(f"📉 SETTLED LOSS: {row['Match']} (-£{stake})")
         except Exception as e:
-            print(f"⚠️ Could not check settlement for market {market_id}: {e}")
+            if 'INVALID_SESSION_INFORMATION' in str(e):
+                print("⚠️ Session expired — re-logging in...")
+                refresh_session()
+                last_keepalive = datetime.now(timezone.utc)
+            else:
+                print(f"⚠️ Could not check settlement for market {market_id}: {e}")
             
     # Save the updated settlements back to the CSV
     df_ledger = update_running_total(df_ledger)
@@ -151,11 +179,22 @@ while True:
         market_type_codes=['HALF_TIME']
     )
 
-    catalogue = trading.betting.list_market_catalogue(
-        filter=strategy_filter,
-        max_results=100, 
-        market_projection=['RUNNER_DESCRIPTION', 'COMPETITION', 'EVENT', 'MARKET_START_TIME']
-    )
+    try:
+        catalogue = trading.betting.list_market_catalogue(
+            filter=strategy_filter,
+            max_results=100,
+            market_projection=['RUNNER_DESCRIPTION', 'COMPETITION', 'EVENT', 'MARKET_START_TIME']
+        )
+    except Exception as e:
+        if 'INVALID_SESSION_INFORMATION' in str(e):
+            print("⚠️ Session expired — re-logging in...")
+            refresh_session()
+            last_keepalive = datetime.now(timezone.utc)
+        else:
+            print(f"⚠️ Could not fetch market catalogue: {e}")
+        print("💤 Routine complete. Sleeping for 5 minutes...\n")
+        time.sleep(300)
+        continue
 
     new_bets_found = False
 
@@ -179,8 +218,11 @@ while True:
                     market_ids=[market.market_id],
                     price_projection=price_projection(price_data=['EX_BEST_OFFERS'])
                 )[0]
-            except Exception:
-                continue 
+            except Exception as e:
+                if 'INVALID_SESSION_INFORMATION' in str(e):
+                    refresh_session()
+                    last_keepalive = datetime.now(timezone.utc)
+                continue
             
             for runner in market_book.runners:
                 runner_name = next((r.runner_name for r in market.runners if r.selection_id == runner.selection_id), "Unknown")
